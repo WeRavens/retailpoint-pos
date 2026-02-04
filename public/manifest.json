@@ -1,0 +1,18 @@
+{
+  "short_name": "Pelangi POS",
+  "name": "Pelangi Nusantara POS",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4f46e5",
+  "background_color": "#0f111a",
+  "orientation": "portrait-primary",
+  "description": "Sistem Kasir Modern Pelangi Nusantara untuk UMKM Indonesia."
+}
