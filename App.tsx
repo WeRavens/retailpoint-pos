@@ -1,14 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ViewState } from './types';
 import { POS } from './components/POS';
 import { Inventory } from './components/Inventory';
 import { Reports } from './components/Reports';
-import { LayoutGrid, ShoppingCart, BarChart3, Menu, Store, Sun, Moon } from 'lucide-react';
+import { Login } from './components/Login';
+import { LayoutGrid, ShoppingCart, BarChart3, Menu, Store, Sun, Moon, Download } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('pos');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallButton, setShowInstallButton] = useState(false);
+
+  // Check if already authenticated
+  useEffect(() => {
+    const auth = localStorage.getItem('pelangi_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  // PWA Install Prompt
+  useEffect(() => {
+    const handler = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallButton(true);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setShowInstallButton(false);
+    }
+    setDeferredPrompt(null);
+  };
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('pelangi_auth');
+    setIsAuthenticated(false);
+  };
+
+  // Show login if not authenticated
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
 
   const renderView = () => {
     switch (currentView) {
@@ -80,12 +127,27 @@ const App: React.FC = () => {
           <NavItem view="reports" icon={BarChart3} label="Laporan" />
           <div className={`my-4 border-t ${isDarkMode ? 'border-slate-800' : 'border-gray-100'}`} />
           <ThemeToggle />
+          
+          {/* Install App Button */}
+          {showInstallButton && (
+            <button
+              onClick={handleInstall}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                isDarkMode 
+                  ? 'text-emerald-400 hover:bg-emerald-500/10' 
+                  : 'text-emerald-600 hover:bg-emerald-50'
+              }`}
+            >
+              <Download className="w-5 h-5" />
+              <span className="font-medium">Install Aplikasi</span>
+            </button>
+          )}
         </nav>
 
         <div className={`p-4 rounded-2xl border mt-auto ${
           isDarkMode ? 'bg-slate-800/50 border-slate-700/50' : 'bg-gray-50 border-gray-100'
         }`}>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-xs shadow-inner">
               AD
             </div>
@@ -94,6 +156,16 @@ const App: React.FC = () => {
               <p className={`text-[10px] font-medium truncate uppercase ${isDarkMode ? 'text-slate-500' : 'text-gray-500'}`}>Manajer Toko</p>
             </div>
           </div>
+          <button
+            onClick={handleLogout}
+            className={`w-full text-sm py-2 rounded-lg font-medium transition-colors ${
+              isDarkMode 
+                ? 'text-red-400 hover:bg-red-500/10' 
+                : 'text-red-600 hover:bg-red-50'
+            }`}
+          >
+            Keluar
+          </button>
         </div>
       </aside>
 
