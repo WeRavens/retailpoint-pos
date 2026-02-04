@@ -131,7 +131,7 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder="Cari produk..."
               className={`w-full pl-10 pr-10 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all text-base ${
                 isDarkMode ? 'bg-[#1e2235] border-[#2d334d] text-white placeholder-slate-500' : 'bg-gray-50 border-gray-200 text-gray-900'
               }`}
@@ -171,7 +171,7 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
           {filteredProducts.length === 0 ? (
             <div className="h-64 flex flex-col items-center justify-center text-gray-400">
               <PackageOpen className="w-16 h-16 mb-2 opacity-30" />
-              <p className="font-medium">No products found</p>
+              <p className="font-medium">Produk tidak ditemukan</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -216,7 +216,7 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
                         outOfStock ? 'bg-red-100 text-red-600' : 
                         isLowStock ? 'bg-orange-100 text-orange-600' : 'bg-green-100 text-green-600'
                       }`}>
-                        {outOfStock ? 'Empty' : `${product.stock}`}
+                        {outOfStock ? 'Habis' : `${product.stock}`}
                       </div>
                     </div>
                   </button>
@@ -240,9 +240,9 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
           <div className="flex flex-col">
             <h2 className={`text-lg font-bold flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
               <ShoppingCart className="w-5 h-5 text-indigo-600" />
-              Your Order
+              Pesanan Anda
             </h2>
-            <p className="text-xs text-gray-500">{totalItems} items</p>
+            <p className="text-xs text-gray-500">{totalItems} barang</p>
           </div>
           <button onClick={() => setIsCartOpenMobile(false)} className={`p-2 rounded-full transition-colors ${isDarkMode ? 'bg-[#252a41] text-slate-400' : 'bg-gray-100 text-gray-500'}`}>
             <X className="w-6 h-6" />
@@ -258,10 +258,10 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
           }`}>
             <h2 className={`font-bold flex items-center gap-2 text-lg ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
               <ShoppingCart className="w-5 h-5 text-indigo-600" />
-              Checkout
+              Keranjang
             </h2>
             <span className="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-              {totalItems} items
+              {totalItems} barang
             </span>
           </div>
 
@@ -269,7 +269,7 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
             {cart.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-gray-400 opacity-50 space-y-4">
                 <ShoppingCart className="w-20 h-20" />
-                <p className="font-medium">Cart is currently empty</p>
+                <p className="font-medium">Keranjang masih kosong</p>
               </div>
             ) : (
               cart.map(item => (
@@ -329,7 +329,7 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
                 className="flex flex-col items-center justify-center gap-1 py-4 px-4 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 disabled:opacity-50 transition-all font-bold shadow-lg shadow-emerald-900/20 active:scale-95"
               >
                 <Banknote className="w-6 h-6" />
-                <span className="text-xs uppercase tracking-tighter">Cash</span>
+                <span className="text-xs uppercase tracking-tighter">Tunai</span>
               </button>
               <button
                 onClick={() => handleCheckout('e-wallet')}
@@ -359,7 +359,7 @@ export const POS: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = false }) 
                 </span>
               </div>
               <div className="text-left">
-                <p className="text-xs text-indigo-100 font-bold uppercase tracking-widest leading-none mb-1">View Order</p>
+                <p className="text-xs text-indigo-100 font-bold uppercase tracking-widest leading-none mb-1">Lihat Pesanan</p>
                 <p className="text-lg font-black">Rp {total.toLocaleString('id-ID')}</p>
               </div>
             </div>

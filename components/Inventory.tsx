@@ -90,15 +90,15 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
     <div className={`p-4 md:p-6 h-full flex flex-col transition-colors duration-300 ${isDarkMode ? 'bg-slate-950 text-slate-100' : 'bg-gray-50 text-gray-900'}`}>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
-          <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Inventory</h1>
-          <p className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} text-sm`}>Manage products and stock levels</p>
+          <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Inventaris</h1>
+          <p className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} text-sm`}>Kelola produk dan tingkat stok</p>
         </div>
         <button
           onClick={() => handleOpenModal()}
           className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4" />
-          Add Product
+          Tambah Produk
         </button>
       </div>
 
@@ -110,7 +110,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search by name or category..."
+              placeholder="Cari berdasarkan nama atau kategori..."
               className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 isDarkMode ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500' : 'bg-white border-gray-200 text-gray-900'
               }`}
@@ -124,11 +124,11 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
           <table className="w-full text-left border-collapse">
             <thead className={`${isDarkMode ? 'bg-slate-800/50' : 'bg-gray-50'} sticky top-0 z-10`}>
               <tr>
-                <th className={`p-4 text-xs font-semibold uppercase tracking-wider ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Product</th>
-                <th className={`p-4 text-xs font-semibold uppercase tracking-wider ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Category</th>
-                <th className={`p-4 text-xs font-semibold uppercase tracking-wider text-right ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Price</th>
-                <th className={`p-4 text-xs font-semibold uppercase tracking-wider text-center ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Stock</th>
-                <th className={`p-4 text-xs font-semibold uppercase tracking-wider text-right ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Actions</th>
+                <th className={`p-4 text-xs font-semibold uppercase tracking-wider ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Produk</th>
+                <th className={`p-4 text-xs font-semibold uppercase tracking-wider ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Kategori</th>
+                <th className={`p-4 text-xs font-semibold uppercase tracking-wider text-right ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Harga</th>
+                <th className={`p-4 text-xs font-semibold uppercase tracking-wider text-center ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Stok</th>
+                <th className={`p-4 text-xs font-semibold uppercase tracking-wider text-right ${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>Aksi</th>
               </tr>
             </thead>
             <tbody className={`divide-y ${isDarkMode ? 'divide-slate-800' : 'divide-gray-100'}`}>
@@ -173,7 +173,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
           </table>
           {filteredProducts.length === 0 && (
             <div className="text-center py-12 text-gray-400">
-              No products found matching your search.
+              Tidak ada produk yang cocok dengan pencarian Anda.
             </div>
           )}
         </div>
@@ -189,7 +189,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
               isDarkMode ? 'border-slate-800' : 'border-gray-100'
             }`}>
               <h2 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
-                {editingProduct ? 'Edit Product' : 'Add New Product'}
+                {editingProduct ? 'Edit Produk' : 'Tambah Produk Baru'}
               </h2>
               <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-gray-600">
                 <X className="w-6 h-6" />
@@ -198,7 +198,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
             
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div className="space-y-1">
-                <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Product Name</label>
+                <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Nama Produk</label>
                 <input
                   required
                   type="text"
@@ -212,7 +212,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Category</label>
+                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Kategori</label>
                   <input
                     required
                     type="text"
@@ -224,14 +224,14 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
                     onChange={e => setFormData({ ...formData, category: e.target.value })}
                   />
                   <datalist id="categories">
-                    <option value="Beverages" />
-                    <option value="Food" />
-                    <option value="Electronics" />
-                    <option value="Clothing" />
+                    <option value="Minuman" />
+                    <option value="Makanan" />
+                    <option value="Elektronik" />
+                    <option value="Pakaian" />
                   </datalist>
                 </div>
                 <div className="space-y-1">
-                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Price (Rp)</label>
+                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Harga (Rp)</label>
                   <input
                     required
                     type="number"
@@ -247,7 +247,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Current Stock</label>
+                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Stok Saat Ini</label>
                   <input
                     required
                     type="number"
@@ -260,7 +260,7 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Low Stock Alert</label>
+                  <label className={`text-sm font-medium ${isDarkMode ? 'text-slate-400' : 'text-gray-700'}`}>Peringatan Stok Rendah</label>
                   <input
                     required
                     type="number"
@@ -282,14 +282,14 @@ export const Inventory: React.FC<{ isDarkMode?: boolean }> = ({ isDarkMode = fal
                     isDarkMode ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  Cancel
+                  Batal
                 </button>
                 <button
                   type="submit"
                   className="px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
                 >
                   <Save className="w-4 h-4" />
-                  Save Product
+                  Simpan Produk
                 </button>
               </div>
             </form>
