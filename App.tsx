@@ -48,9 +48,9 @@ const App: React.FC = () => {
       }`}
     >
       {isDarkMode ? (
-        <><Sun className="w-5 h-5" /> <span className="font-medium text-slate-300">Light Mode</span></>
+        <><Sun className="w-5 h-5" /> <span className="font-medium text-slate-300">Mode Terang</span></>
       ) : (
-        <><Moon className="w-5 h-5" /> <span className="font-medium">Dark Mode</span></>
+        <><Moon className="w-5 h-5" /> <span className="font-medium">Mode Gelap</span></>
       )}
     </button>
   );
@@ -75,9 +75,9 @@ const App: React.FC = () => {
         </div>
 
         <nav className="flex-1 space-y-2">
-          <NavItem view="pos" icon={ShoppingCart} label="Cashier (POS)" />
-          <NavItem view="inventory" icon={LayoutGrid} label="Inventory" />
-          <NavItem view="reports" icon={BarChart3} label="Reports" />
+          <NavItem view="pos" icon={ShoppingCart} label="Kasir" />
+          <NavItem view="inventory" icon={LayoutGrid} label="Inventaris" />
+          <NavItem view="reports" icon={BarChart3} label="Laporan" />
           <div className={`my-4 border-t ${isDarkMode ? 'border-slate-800' : 'border-gray-100'}`} />
           <ThemeToggle />
         </nav>
@@ -90,8 +90,8 @@ const App: React.FC = () => {
               AD
             </div>
             <div className="overflow-hidden">
-              <p className={`text-sm font-bold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Admin User</p>
-              <p className={`text-[10px] font-medium truncate uppercase ${isDarkMode ? 'text-slate-500' : 'text-gray-500'}`}>Store Manager</p>
+              <p className={`text-sm font-bold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Pengguna Admin</p>
+              <p className={`text-[10px] font-medium truncate uppercase ${isDarkMode ? 'text-slate-500' : 'text-gray-500'}`}>Manajer Toko</p>
             </div>
           </div>
         </div>
